@@ -1,0 +1,8 @@
+# YAML
+tanbana :
+    name : Tanbana Jacobson
+    job : Coder
+    skills :
+        - Python
+        - Peal
+        - PHP

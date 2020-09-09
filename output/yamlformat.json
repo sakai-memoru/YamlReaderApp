@@ -1,0 +1,11 @@
+{
+    "martin": {
+        "name": "Martin Jobson",
+        "job": "Developer",
+        "skills": [
+            "fortran",
+            "lisp",
+            "erlang"
+        ]
+    }
+}
