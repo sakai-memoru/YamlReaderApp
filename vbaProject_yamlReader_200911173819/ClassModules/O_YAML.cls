@@ -830,7 +830,7 @@ Call C_Array.DeleteEmptyElement(jagaryKeys)
 ''
 End Sub
 
-Public Function ConverttoJObject(ByVal targetParam As String, ByVal shtName As String, Optional ByVal wbName As Variant) As cJobject
+Public Function ConverttoJObject(ByVal targetParam As String, ByVal shtName As String, Optional ByVal wbName As Variant, Optional opt As Variant = False) As cJobject
 '''' ********************************************************
 '''' @function ConverttoJObject
 '''' @description
@@ -849,9 +849,15 @@ End If
 ''
 Dim aryary() As Variant
 Let aryary = C_Range.GetCurrentRegionByKeyword(targetParam, shtName, bookName:=wbName)
-Call C_Array.DeleteRowForArrayArray(aryary, 1)
-Let aryary = C_Array.FilterRowForArrayArray(aryary, 1)
-Call C_Array.DeleteColumnForArrayArray(aryary, 1)
+
+If opt Then
+    Let aryary = C_Range.GetCurrentRegionByKeyword(targetParam, shtName, bookName:=wbName)
+Else
+    Let aryary = C_Range.GetCurrentRegionByKeyword(targetParam, shtName, bookName:=wbName)
+    Call C_Array.DeleteRowForArrayArray(aryary, 1)
+    Let aryary = C_Array.FilterRowForArrayArray(aryary, 1)
+    Call C_Array.DeleteColumnForArrayArray(aryary, 1)
+End If
 ''
 Call Me.SetData(aryary)
 ''
