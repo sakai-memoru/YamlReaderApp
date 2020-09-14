@@ -182,3 +182,100 @@ Let yaml_str = VBA.Join(lines, vbCrLf) & vbCrLf
 Call C_FileIO.WriteTextAllAsUTF8NoneBOM(outfile_path, yaml_str)
 ''
 End Sub
+
+Sub TestArrayArrayToYaml()
+'''' *********************************************
+''
+Dim C_Range As C_Range
+Set C_Range = New C_Range
+Dim C_Array As C_Array
+Set C_Array = New C_Array
+Dim C_Book As C_Book
+Set C_Book = New C_Book
+Dim C_File As C_File
+Set C_File = New C_File
+Dim C_FileIO As C_FileIO
+Set C_FileIO = New C_FileIO
+''
+Dim C_JObject As C_JObject
+Set C_JObject = New C_JObject
+Dim objYaml As O_YAML
+Set objYaml = New O_YAML
+''
+''
+Dim base_folder As String
+Let base_folder = C_Book.GetThisWorkbookFolder
+Dim outfile_name As String
+Let outfile_name = "output\tabledef.yaml"
+Dim outfile_path As String
+Let outfile_path = C_File.BuildPath(base_folder, outfile_name)
+''
+Dim targetParam As String
+Let targetParam = "name"
+Dim shtName As String
+Let shtName = "Sheet3"
+Dim aryary As Variant
+Let aryary = C_Range.GetCurrentRegionByKeyword(targetParam, shtName).Value
+''
+Dim jObj As cJobject
+Set jObj = New cJobject
+Set jObj = C_JObject.ConvertfromArrayArrayToArrayDictionary(aryary)
+'Console.info jObj.formatData
+Dim lines As Variant
+Let lines = C_JObject.ConverttoYamlArray(jObj)
+'Console.Dir lines
+Dim yaml_str As String
+Let yaml_str = VBA.Join(lines, vbCrLf) & vbCrLf
+'Console.info yaml_str
+Call C_FileIO.WriteTextAllAsUTF8NoneBOM(outfile_path, yaml_str)
+''
+End Sub
+
+Sub TestArrayDictionaryToYaml()
+'''' *********************************************
+''
+Dim C_Range As C_Range
+Set C_Range = New C_Range
+Dim C_Array As C_Array
+Set C_Array = New C_Array
+Dim C_Book As C_Book
+Set C_Book = New C_Book
+Dim C_File As C_File
+Set C_File = New C_File
+Dim C_FileIO As C_FileIO
+Set C_FileIO = New C_FileIO
+''
+Dim C_JObject As C_JObject
+Set C_JObject = New C_JObject
+Dim objYaml As O_YAML
+Set objYaml = New O_YAML
+''
+''
+Dim base_folder As String
+Let base_folder = C_Book.GetThisWorkbookFolder
+Dim outfile_name As String
+Let outfile_name = "output\tabledef2.yaml"
+Dim outfile_path As String
+Let outfile_path = C_File.BuildPath(base_folder, outfile_name)
+''
+Dim targetParam As String
+Let targetParam = "name"
+Dim shtName As String
+Let shtName = "Sheet3"
+Dim aryary As Variant
+Let aryary = C_Range.GetCurrentRegionByKeyword(targetParam, shtName).Value
+''
+Dim jObj As cJobject
+Set jObj = New cJobject
+Set jObj = C_JObject.ConvertfromArrayArrayToDictionary(aryary)
+'Console.info jObj.formatData
+Dim lines As Variant
+Let lines = C_JObject.ConverttoYamlArray(jObj)
+'Console.Dir lines
+Dim yaml_str As String
+Let yaml_str = VBA.Join(lines, vbCrLf) & vbCrLf
+'Console.info yaml_str
+Call C_FileIO.WriteTextAllAsUTF8NoneBOM(outfile_path, yaml_str)
+''
+End Sub
+
